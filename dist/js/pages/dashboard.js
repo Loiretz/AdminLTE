@@ -124,6 +124,10 @@ $(function () {
     height: '250px'
   });
 
+  $('#btn-enviar-recuperar-senha').onClick({
+
+  });
+
   /* Morris.js Charts */
   // Sales chart
   var area = new Morris.Area({
