@@ -454,9 +454,8 @@
                   <td>busca.email(3)</td>
                   <td>busca.matricula(3)</td>
                   <td>busca.instituicao(3)</td>
-                  <td><a href="../../dist/img/IEU.png" target="_blank" onclick="window.open('../../dist/img/IEU.png', 'popup'
-                    , 'height=200, width=200'); return false;">Ver Foto CPF</a></td>
-                  <td><a href="../../dist/img/avatar.png" target="_blank" onclick="window.open('../../dist/img/avatar.png', 'popup'
+                  <td><a target="_blank" onclick="window.open(''); return false;">Ver Foto CPF</a></td>
+                  <td><a target="_blank" onclick="window.open('../../dist/img/avatar.png', 'popup'
                       , 'height=200, width=200'); return false;">Ver Foto Matrícula</a></td>
                   <td><div class="form-group">
                        <select class="form-control select2" style="width: 100%;">
@@ -477,6 +476,28 @@
       <!-- /.row -->
     </section>
     <!-- /.content -->
+    <button id="meuBotao">Meu botao</button>
+    <!-- <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+      Launch demo modal
+    </button> -->
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+</div>
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
@@ -685,6 +706,7 @@
 
 <!-- jQuery 3 -->
 <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../../dist/js/data.page.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- DataTables -->
