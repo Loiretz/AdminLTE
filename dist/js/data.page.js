@@ -14,13 +14,15 @@ $("#meuBotao").click( function()
       var resultado = JSON.parse(result);
       console.log(resultado.type);
       $("#nomeusuariomodal").html(resultado.type);
+      // $("#cpfusuariomodal").html(resultado.info);
+      // $("#matusuariomodal").html(restultado.data);
     },
     error: function (jqXHR, tranStatus, errorThrown) {
       alert('Status: ' + jqXHR.status + ' ' + jqXHR.statusText + '. ' +
       'Response: ' + jqXHR.responseText);
     }
   });
-// }
+ //
 
   console.log({'chave': 'valor', 'chave2': 'valor2'});
 });
