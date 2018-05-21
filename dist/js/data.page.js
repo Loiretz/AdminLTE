@@ -1,21 +1,22 @@
 // carregarTabela();
-
-
-
 $("#meuBotao").click( function()
 {
+  //chamando pelo id
   $('#myModal').modal('show');
-//
+  console.log("cliclado pelo Seletor");
+
   $.ajax({
+    //aqui da certo
     url: 'https://api.ieu.caiorondon.com.br/us/system/status',
     type: 'GET',
     dataType: 'text',
+
     success: function (result) {
       var resultado = JSON.parse(result);
-      console.log(resultado.type);
-      $("#nomeusuariomodal").html(resultado.type);
-      // $("#cpfusuariomodal").html(resultado.info);
-      // $("#matusuariomodal").html(restultado.data);
+      $("#nomeusermodal").html(resultado.type);
+      $("#cpfusermodal").html(resultado.type);
+      $("#idususermodal").html(resultado.type);
+      //fim do aqui certo
     },
     error: function (jqXHR, tranStatus, errorThrown) {
       alert('Status: ' + jqXHR.status + ' ' + jqXHR.statusText + '. ' +
@@ -33,3 +34,19 @@ $(".minhaClasse").click( function()
 });
 
 // DOM -> Html
+
+
+// pegando da medicao de tempo só pelo vrau.
+// url: 'http://samples.openweathermap.org/data/2.5/find?q=London&units=metric&appid=b6907d289e10d714a6e88b30761fae22'
+// type: 'GET'
+// dataType: 'text',
+// success: function (result) {
+//   $.each
+// var resultado = JSON.parse(result);
+// $("#nomeusermodal").html(resultado.message);
+// $("#cpfusermodal").html(resultado.message);
+// $("#idususermodal").html(resultado.message);
+// // $("#schoolusermodal").html(resultado.cod);
+// // $("#imgcpfusermodal").html(resultado.count);
+// $("#imgidusermodal").html(resultado.list.0.coord.lat);
+// $("#statususermodal").html(resultado.list.0.coord.lat);

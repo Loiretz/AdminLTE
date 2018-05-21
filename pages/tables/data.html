@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="../../dist/css/skins/skin-green.min.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -54,83 +54,6 @@
 
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
-          <!-- Messages: style can be found in dropdown.less-->
-          <li class="dropdown messages-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-envelope-o"></i>
-              <span class="label label-success">4</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">You have 4 messages</li>
-              <li>
-                <!-- inner menu: contains the actual data -->
-                <ul class="menu">
-                  <li><!-- start message -->
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Support Team
-                        <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                  <!-- end message -->
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="../../dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        AdminLTE Design Team
-                        <small><i class="fa fa-clock-o"></i> 2 hours</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="../../dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Developers
-                        <small><i class="fa fa-clock-o"></i> Today</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="../../dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Sales Department
-                        <small><i class="fa fa-clock-o"></i> Yesterday</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="../../dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Reviewers
-                        <small><i class="fa fa-clock-o"></i> 2 days</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="footer"><a href="#">See All Messages</a></li>
-            </ul>
-          </li>
           <!-- Notifications: style can be found in dropdown.less -->
           <li class="dropdown notifications-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -268,21 +191,6 @@
                   <small>Member since Nov. 2012</small>
                 </p>
               </li>
-              <!-- Menu Body -->
-              <li class="user-body">
-                <div class="row">
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Followers</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Sales</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Friends</a>
-                  </div>
-                </div>
-                <!-- /.row -->
-              </li>
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
@@ -394,9 +302,6 @@
     <!-- Main content -->
     <section class="content">
           <!-- /.box -->
-
-<!-- PRA FAZER ESSA BAGAÇA MODAL -->
-
           <div class="box">
             <div class="box-header">
               <h3 class="box-title">Tabela de usuários</h3>
@@ -411,15 +316,13 @@
                   <th>Estado do cadastro</th>
                 </tr>
                 </thead>
-                <tbody>
+              <tfoot>
                 <tr>
-                  <td><button type="button" class="btn btn-primary" data-toggle="modal" id="meuBotao">
-                    nome.aluno
-                  </button></td>
-                  <td>nome.instituicao</td>
-                  <td>status</td>
+                  <th>Nome</th>
+                  <th>Instituição</th>
+                  <th>Estado do cadastro</th>
                 </tr>
-                </tfoot>
+              </tfoot>
               </table>
             </div>
             <!-- /.box-body -->
@@ -435,23 +338,24 @@
       Launch demo modal
     </button> -->
 
+<button type="button" class="btn btn-primary" data-toggle="modal" id="meuBotao">CARALHO</button>
 <!--Base do Modal utilizado -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            <h4 class="modal-title" id="myModalLabel">Informações do usuário</h4>
           </div>
           <div class="modal-body">
             <form>
-              Nome: <p id="nomeusuariomodal"></p>
-              CPF: <p id="cpfusuariomodal"></p>
-              Matrícula: <p id="matusuariomodal"></p>
-              Instituição de Ensino:<p></p>
-              Foto CPF:<p></p>
-              Foto Comprovante de Matrícula:<p></p>
-              Situação de cadastro:<p></p>
+              Nome: <p id="nomeusermodal"></p>
+              CPF: <p id="cpfusermodal"></p>
+              Matrícula: <p id="idususermodal"></p>
+              Instituição de Ensino:<p id="schoolusermodal"></p>
+              Foto CPF:<p id="imgcpfusermodal"></p>
+              Foto Comprovante de Matrícula:<p id="imgidusermodal"></p>
+              Situação de cadastro:<p id="statususermodal"></p>
             </form>
           </div>
           <div class="modal-footer">
@@ -672,12 +576,13 @@
 
 <!-- jQuery 3 -->
 <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
-<script src="../../dist/js/data.page.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- DataTables -->
 <script src="../../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="../../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
+<script src="../../dist/js/data.page.js"></script>
 <!-- SlimScroll -->
 <script src="../../bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
@@ -688,17 +593,35 @@
 <script src="../../dist/js/demo.js"></script>
 <!-- page script -->
 <script>
-  $(function () {
-    $('#example1').DataTable()
-    $('#example2').DataTable({
-      'paging'      : true,
-      'lengthChange': false,
-      'searching'   : false,
-      'ordering'    : true,
-      'info'        : true,
-      'autoWidth'   : false
-    })
-  })
+//ate aqui ok
+    $('#example1').DataTable({
+      "ajax":"colors.txt",
+      "columns": [
+          { "data": "name" },
+          { "data": "position" },
+          { "data": "salary" }
+      ]
+
+    });
+      //segue esse link https://www.youtube.com/watch?v=yGTGU3IPoWE
+      //aqui vira brazil
+
+      $(document).ready(function() {
+    var table = $('#example').DataTable( {
+        "ajax": "colors.txt",
+        "columnDefs": [ {
+            "targets": -1,
+            "data": null,
+            "defaultContent": "<button>Click!</button>"
+        } ]
+    } );
+
+    $('#example tbody').on( 'click', 'button', function () {
+        var data = table.row( $(this).parents('tr') ).data();
+        alert( data[0] +"'s salary is: "+ data[ 5 ] );
+    } );
+} );
+
 </script>
 </body>
 </html>

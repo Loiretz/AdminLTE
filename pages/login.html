@@ -34,9 +34,11 @@
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <p class="login-box-msg">Entre para iniciar sua sessão</p>
+    <p class="login-box-msg" id="botaoLogin">Entre para iniciar sua sessão</p>
 
-    <form action="../index2.html" method="post">
+    <!-- ta certo essa caraia aqui? -->
+    <form action="tables/data.html">
+    <!-- <form action="index2.html" method="post"> -->
       <div class="form-group has-feedback">
         <input type="email" class="form-control" placeholder="Email">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
@@ -55,7 +57,7 @@
         </div>
         <!-- /.col -->
         <div class="col-xs-4">
-          <button type="submit" class="btn btn-primary btn-block btn-flat">Entrar</button>
+          <button type="submit" id="botaoLogin "class="btn btn-primary btn-block btn-flat">Entrar</button>
         </div>
         <!-- /.col -->
       </div>
@@ -71,8 +73,13 @@
 </div>
 <!-- /.login-box -->
 
+
+<!-- <script src="../dist/js/login.js"></script> -->
 <!-- jQuery 3 -->
 <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+
+<!-- AI SIM MI PATRON -->
+<script type="text/javascript" src="../dist/js/login.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- iCheck -->
