@@ -16,6 +16,7 @@ $("#meuBotao").click( function()
       $("#nomeusermodal").html(resultado.type);
       $("#cpfusermodal").html(resultado.type);
       $("#idususermodal").html(resultado.type);
+      $
       //fim do aqui certo
     },
     error: function (jqXHR, tranStatus, errorThrown) {
@@ -24,13 +25,21 @@ $("#meuBotao").click( function()
     }
   });
  //
-
-  console.log({'chave': 'valor', 'chave2': 'valor2'});
 });
 
 $(".minhaClasse").click( function()
 {
   console.log("Clicado pela classe");
+});
+
+$("#botaoModalInst").click( function()
+{
+  $('#modalInstituicao').modal('show');
+});
+
+$(".pop").on("click", function() {
+   $('#imagepreview').attr('src', $(this).attr('src')); // here asign the image to the modal when the user click the enlarge link
+   $('#imagemodal').modal('show'); // imagemodal is the id attribute assigned to the bootstrap modal, then i use the show function
 });
 
 // DOM -> Html
