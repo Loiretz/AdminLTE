@@ -6,34 +6,29 @@ $("#botaoLogin").click( function(){
   var vpassword = $("#password").val();
   var data = {email:vemail , password:vpassword}
 
-  if (email !== "" || password !== "")
-  {
-    console.log("TO RODANDO O IF");
-    $.ajax({
-        type: 'POST',
-        url: 'https://api.ieu.caiorondon.com.br/as/auth/login',
-        data: data,
-        dataType: 'JSON',
-        // beforeSend: function()
-        success: function(response){
-          var msg = "";
-          if(response == 1)
-          console.log("terminei, tu ta logado e vou te mandar pra outra pagina");
-          //window.location= "tables/data.html";
-          //inserir aqui redirecionamento de página,
-          //indicar o token e guarda-lo (COMO???)
-        }//fim do success
-      }
-    )//fim do $.ajax
+  console.log(data)
+  $.ajax({
+    type: 'POST',
+    url: 'https://api.ieu.caiorondon.com.br/as/auth/login',
+    data: JSON.stringify(data),
+    dataType: 'JSON',
+    // beforeSend: function()
+    success: function(response){
+      console.log(response);
+      //window.location= "tables/data.html";
+      //inserir aqui redirecionamento de página,
+      //indicar o token e guarda-lo (COMO???)
+    },//fim do success
+    error: function(xhr, data){
+      console.log(data);
+    }//fim do error
+});//fim do $.ajax
 
-    //so pra testes
-    //window.location= "tables/data.html";
+//so pra testes
+//window.location= "tables/data.html";
 
 
-  }// fim do if
-  else {
-    console.log("terminei e nao ta logado");
-  }
+// console.log("terminei e nao ta logado");
 
 });
 
