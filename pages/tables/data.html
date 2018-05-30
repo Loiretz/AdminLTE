@@ -193,11 +193,8 @@
               </li>
               <!-- Menu Footer-->
               <li class="user-body">
-                <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
-                </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="../login.html" class="btn btn-default btn-flat">Desconectar</a>
                 </div>
               </li>
             </ul>
@@ -250,34 +247,6 @@
           </a>
         </li>
         <!-- FIM sidebar Grafana -->
-        <!--Sidebar - Calendário -->
-          <li>
-            <a href="../calendar.html">
-              <i class="fa fa-calendar"></i> <span>Calendário</span>
-              <span class="pull-right-container">
-                <small class="label pull-right bg-red">3</small>
-                <small class="label pull-right bg-blue">17</small>
-              </span>
-            </a>
-          </li>
-          <!--FIM sidebar - calendário  -->
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-laptop"></i>
-            <span>UI Elements</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="../UI/general.html"><i class="fa fa-circle-o"></i> General</a></li>
-            <li><a href="../UI/icons.html"><i class="fa fa-circle-o"></i> Icons</a></li>
-            <li><a href="../UI/buttons.html"><i class="fa fa-circle-o"></i> Buttons</a></li>
-            <li><a href="../UI/sliders.html"><i class="fa fa-circle-o"></i> Sliders</a></li>
-            <li><a href="../UI/timeline.html"><i class="fa fa-circle-o"></i> Timeline</a></li>
-            <li><a href="../UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li>
-          </ul>
-        </li>
         </ul>
       </section>
       <!-- /.sidebar -->
@@ -336,7 +305,8 @@
       Launch demo modal
     </button> -->
 
-<button type="button" class="btn btn-primary" data-toggle="modal" id="meuBotao">MODAL</button>
+<!--Descomente aqui para um botão na parte inferior na tela. Esse é o modelo de modal como o abaixo  -->
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" id="meuBotao">MODAL</button> -->
 <!--Base do Modal utilizado -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
@@ -380,12 +350,12 @@
 
 <!-- jQuery 3 -->
 <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
 <!-- DataTables -->
 <script src="../../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="../../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-
+<!-- Bootstrap 3.3.7 -->
+<script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="../../dist/js/data.page.js"></script>
 <!-- SlimScroll -->
 <script src="../../bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
@@ -399,13 +369,13 @@
 <script>
 //ate aqui ok
     $('#example1').DataTable({
-      "ajax":"colors.txt",
-      "columns": [
+      ajax:"colors.txt",
+      columns: [
           { "data": "name" },
           { "data": "id" },
           { "data": "salary" }
-      ]
-
+      ],
+      order: [[2, "desc"]],// ordenando pelo elemento 2 (data:salary)
     });
       //segue esse link https://www.youtube.com/watch?v=yGTGU3IPoWE
       //https://datatables.net/extensions/responsive/examples/display-types/bootstrap-modal.html como fazer o modal dentro
