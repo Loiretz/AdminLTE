@@ -1,0 +1,9 @@
+stages:
+  - deploy
+
+deploy_website:
+  stage: deploy
+  only:
+    - master
+  script:
+    - rsync -a --progress --delete . /var/www/ieu/admin
