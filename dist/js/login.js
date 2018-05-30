@@ -14,26 +14,14 @@ $("#botaoLogin").click( function(){
     dataType: 'JSON',
     // beforeSend: function()
     success: function(response){
-      console.log(response);
+      Cookies.set('admin-ieu-token',response.data.token);
+      window.location.replace("tables/data.html")
       //window.location= "tables/data.html";
-      //inserir aqui redirecionamento de página,
-      //indicar o token e guarda-lo (COMO???)
     },//fim do success
     error: function(xhr, data){
-      console.log(data);
+      console.log(xhr.error);
+      $('#modalErro').modal('show');
+
     }//fim do error
-});//fim do $.ajax
-
-//so pra testes
-//window.location= "tables/data.html";
-
-
-// console.log("terminei e nao ta logado");
-
+  });//fim do $.ajax
 });
-
-
-// beforeSend: function()
-// {
-//   $("btn-login").html('Validando login...');
-// }//fim do beforeSend,
