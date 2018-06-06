@@ -311,7 +311,7 @@
               </span>
             </a>
               <ul class="treeview-menu">
-                <li><a href="data.html"><i class="fa fa-table"></i>Tabela de Instituições</a></li>
+                <li><a href="data.html"><i class="fa fa-table"></i>Tabela de Usuários</a></li>
                 <li><a href="instituicao.html"><i class="fa fa-th-large"></i>Tabela de Instituições</a></li>
               </ul>
           </li>
@@ -335,23 +335,6 @@
               </a>
             </li>
             <!--FIM sidebar - calendário  -->
-          <li class="treeview">
-            <a href="#">
-              <i class="fa fa-laptop"></i>
-              <span>UI Elements</span>
-              <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-            </a>
-            <ul class="treeview-menu">
-              <li><a href="../UI/general.html"><i class="fa fa-circle-o"></i> General</a></li>
-              <li><a href="../UI/icons.html"><i class="fa fa-circle-o"></i> Icons</a></li>
-              <li><a href="../UI/buttons.html"><i class="fa fa-circle-o"></i> Buttons</a></li>
-              <li><a href="../UI/sliders.html"><i class="fa fa-circle-o"></i> Sliders</a></li>
-              <li><a href="../UI/timeline.html"><i class="fa fa-circle-o"></i> Timeline</a></li>
-              <li><a href="../UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li>
-            </ul>
-          </li>
           </ul>
         </section>
         <!-- /.sidebar -->
@@ -383,7 +366,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="example1" class="table table-striped table-bordered nowrap" style="width=100%">
+              <table id="tableSchool" class="table table-striped table-bordered nowrap" style="width=100%">
                 <thead>
                 <tr>
                   <th>Instituição</th>
@@ -438,7 +421,7 @@
 
 <!-- jQuery 3 -->
 <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
-<script src="../../dist/js/data.page.js"></script>
+<script src="../../dist/js/school.page.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- DataTables -->
@@ -455,14 +438,13 @@
 <!-- page script -->
 <script>
   $(function () {
-    $('#example1').DataTable()
-    $('#example2').DataTable({
+    $('#tableSchool').DataTable({
       'paging'      : true,
       'lengthChange': false,
       'searching'   : false,
       'ordering'    : true,
       'info'        : true,
-      'autoWidth'   : false
+      'autoWidth'   : true
     })
   })
 </script>

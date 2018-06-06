@@ -1,0 +1,10 @@
+body.modal-open-noscroll
+{
+  margin-right: 0!important;
+  overflow: hidden;
+}
+.modal-open-noscroll .navbar-default, .modal-open .navbar-default
+{
+  margin-right: 0!important;
+}
+share
