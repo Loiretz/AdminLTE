@@ -55,49 +55,8 @@
 
         <div class="navbar-custom-menu">
           <ul class="nav navbar-nav">
-            <!-- Notifications: style can be found in dropdown.less -->
-            <li class="dropdown notifications-menu">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <i class="fa fa-bell-o"></i>
-                <span class="label label-warning">10</span>
-              </a>
-              <ul class="dropdown-menu">
-                <li class="header">You have 10 notifications</li>
-                <li>
-                  <!-- inner menu: contains the actual data -->
-                  <ul class="menu">
-                    <li>
-                      <a href="#">
-                        <i class="fa fa-users text-aqua"></i> 5 new members joined today
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the
-                        page and may cause design problems
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <i class="fa fa-users text-red"></i> 5 new members joined
-                      </a>
-                    </li>
 
-                    <li>
-                      <a href="#">
-                        <i class="fa fa-shopping-cart text-green"></i> 25 sales made
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <i class="fa fa-user text-red"></i> You changed your username
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-                <li class="footer"><a href="#">View all</a></li>
-              </ul>
-            </li>
+
             <!-- Tasks: style can be found in dropdown.less -->
             <li class="dropdown tasks-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -301,13 +260,27 @@
         </div>
         <div class="modal-body">
           <form>
-            Nome: <p id="nomeusermodal"></p>
-            CPF: <p id="cpfusermodal"></p>
-            Matrícula: <p id="idusermodal"></p>
-            Instituição de Ensino:<p id="schoolusermodal"></p>
-            Foto CPF:<p id="imgcpfusermodal"></p>
-            Foto Comprovante de Matrícula:<p id="imgidusermodal"></p>
-            Situação de cadastro:<p id="statususermodal"></p>
+              <div class="row">
+                <div class="col-md-6">
+
+                Nome: <p id="nomeusermodal"></p>
+                Matrícula: <p id="idusermodal"></p>
+                Instituição de Ensino:<p id="schoolusermodal"></p>
+                CPF: <p id="cpfusermodal"></p>
+                Nome: <p id="emailusermodal"></p>
+                Situação de cadastro:<p id="statususermodal"></p>
+            </div>
+            <div class="col-md-6">
+                <p>Foto CPF:</p>
+                <img id="imgcpfusermodal" style="width: 50%"/>
+                <p>Foto Comprovante de Matrícula:</p>
+                <img id="imgidusermodal" style="width: 50%"/>
+            </div>
+          </div>
+
+
+
+
           </form>
         </div>
         <div class="modal-footer">
@@ -320,8 +293,8 @@
   <!--FIM: Base do Modal Utilizado  -->
 
   <!-- modal exemplo -->
-
-  <button type="button" class="btn btn-primary" data-toggle="modal" id="meuBotao">MODAL</button>
+  <!-- <button type="button" class="btn btn-primary" data-toggle="modal" id="meuBotao">MODAL</button> -->
+  <!-- FIM modal exemplo -->
   <div class="modal fade" id="modalTexto" tabindex="-1" role="dialog" aria-labelledby="modalTextoLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
