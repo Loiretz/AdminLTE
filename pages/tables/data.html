@@ -16,10 +16,13 @@
   <link rel="stylesheet" href="../../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
+
+  <link rel="stylesheet" href="../../dist/css/data.min.css">
+
   <!-- AdminLTE Skins. Choose a skin from the css/skins
   folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="../../dist/css/skins/skin-green.min.css">
-  <link rel="stylesheet" href="../../dist/css/pages/data.css">
+  <!-- <link rel="stylesheet" href="../../dist/css/pages/data.css"> -->
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -57,89 +60,12 @@
           <ul class="nav navbar-nav">
 
 
-            <!-- Tasks: style can be found in dropdown.less -->
-            <li class="dropdown tasks-menu">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <i class="fa fa-flag-o"></i>
-                <span class="label label-danger">9</span>
-              </a>
-              <ul class="dropdown-menu">
-                <li class="header">You have 9 tasks</li>
-                <li>
-                  <!-- inner menu: contains the actual data -->
-                  <ul class="menu">
-                    <li><!-- Task item -->
-                      <a href="#">
-                        <h3>
-                          Design some buttons
-                          <small class="pull-right">20%</small>
-                        </h3>
-                        <div class="progress xs">
-                          <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar"
-                          aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">20% Complete</span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <!-- end task item -->
-                  <li><!-- Task item -->
-                    <a href="#">
-                      <h3>
-                        Create a nice theme
-                        <small class="pull-right">40%</small>
-                      </h3>
-                      <div class="progress xs">
-                        <div class="progress-bar progress-bar-green" style="width: 40%" role="progressbar"
-                        aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                        <span class="sr-only">40% Complete</span>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <!-- end task item -->
-                <li><!-- Task item -->
-                  <a href="#">
-                    <h3>
-                      Some task I need to do
-                      <small class="pull-right">60%</small>
-                    </h3>
-                    <div class="progress xs">
-                      <div class="progress-bar progress-bar-red" style="width: 60%" role="progressbar"
-                      aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                      <span class="sr-only">60% Complete</span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <!-- end task item -->
-              <li><!-- Task item -->
-                <a href="#">
-                  <h3>
-                    Make beautiful transitions
-                    <small class="pull-right">80%</small>
-                  </h3>
-                  <div class="progress xs">
-                    <div class="progress-bar progress-bar-yellow" style="width: 80%" role="progressbar"
-                    aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                    <span class="sr-only">80% Complete</span>
-                  </div>
-                </div>
-              </a>
-            </li>
-            <!-- end task item -->
-          </ul>
-        </li>
-        <li class="footer">
-          <a href="#">View all tasks</a>
-        </li>
-      </ul>
-    </li>
+
     <!-- User Account: style can be found in dropdown.less -->
     <li class="dropdown user user-menu">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">
         <img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-        <span class="hidden-xs">Alexander Pierce</span>
+        <span class="hidden-xs">Usuário</span>
       </a>
       <ul class="dropdown-menu">
         <!-- User image -->
@@ -147,8 +73,8 @@
           <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
           <p>
-            Alexander Pierce - Web Developer
-            <small>Member since Nov. 2012</small>
+            Usuário
+            <small>Ralando desde Março</small>
           </p>
         </li>
         <!-- Menu Footer-->
@@ -231,7 +157,7 @@
     <!-- /.box -->
     <div class="box">
       <div class="box-header">
-        <h3 class="box-title">Tabela de usuários</h3>
+        <h3 class="box-title highlight">Tabela de usuários</h3>
       </div>
       <!-- /.box-header -->
       <div class="box-body">
@@ -252,7 +178,7 @@
 
   <!--Base do Modal utilizado -->
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -263,18 +189,19 @@
               <div class="row">
                 <div class="col-md-6">
 
-                Nome: <p id="nomeusermodal"></p>
-                Matrícula: <p id="idusermodal"></p>
-                Instituição de Ensino:<p id="schoolusermodal"></p>
-                CPF: <p id="cpfusermodal"></p>
-                Nome: <p id="emailusermodal"></p>
-                Situação de cadastro:<p id="statususermodal"></p>
+                <b>Nome:</b> <p id="nomeusermodal"></p>
+                <b>Matrícula:</b> <p id="idusermodal"></p>
+                <b>Instituição de Ensino:</b><p id="schoolusermodal"></p>
+                <b>CPF:</b> <p id="cpfusermodal"></p>
+                <b>Email:</b> <p id="emailusermodal"></p>
+                <b>Situação de cadastro:</b><p id="statususermodal"></p>
             </div>
             <div class="col-md-6">
-                <p>Foto CPF:</p>
-                <img id="imgcpfusermodal" style="width: 50%"/>
-                <p>Foto Comprovante de Matrícula:</p>
-                <img id="imgidusermodal" style="width: 50%"/>
+                <p><b>Foto CPF:</b></p>
+                <img id="imgcpfusermodal" style="width: 100%"/>
+                <p> </p>
+                <p><b>Foto Comprovante de Matrícula:</b></p>
+                <img id="imgidusermodal" style="width: 100%"/>
             </div>
           </div>
 

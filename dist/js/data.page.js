@@ -2,48 +2,62 @@
 
 // $(document).ready(function() {
 var table = $('#example1').DataTable({
-  ajax:"colors.txt",
+  ajax:"json.txt",
   columns: [
-    { "data": "name" },
-    { "data": "id" },
-    { "data": "salary" }
+    { "data": "nome" },
+    { "data": "instituicao" },
+    { "data": "situacao" }
   ],
   order: [[2, "desc"]],// ordenando pelo elemento 2 (data:salary)
+
+  "createdRow": function ( row, data, index ) {
+    if ( data['situacao'].replace(/[\$,]/g, '') == 'Pendente ') {
+      $('td', row).eq(2).addClass('highlight');
+    }
+  }
 });
 
 $('#example1 tbody').on( 'click', 'tr', function () {
   var data = table.row( this ).data();
-  // console.log(table.row( this ).data());
+  //console.log(table.row( this ).data());
+  console.log(data['situacao']);
   abrirModal(table.row(this).data());
 } );
 
-
+$(document).ready(function() {
+  var data = table.row( this ).data();
+  console.log("eu existo");
+  //style.color = 'red';
+});
 
 function abrirModal(data){
-  // $('#nomeusermodal').html(data["name"]);
-  // $('#idusermodal').html(data["id"]);
-  // $('#schoolusermodal').html(data["university"]);
-  // $('#imgidusermodal').attr('src', data["doc_1"]);
-  // $('#cpfusermodal').html(data["cpf"]);
-  // $('#imgcpfusermodal').attr('src', data["doc_2"]);
-  // $('#emailusermodal').html(data["email"]);
-  // $('#statususermodal').html(data["status"]);
-
-  $('#nomeusermodal').html(data["name"]);
-  $('#idusermodal').html(data["id"]);
-  $('#schoolusermodal').html(data["position"]);
-  $('#imgidusermodal').attr('src', data["img_1"]);
-  $('#cpfusermodal').html(data["start_date"]);
-  $('#imgcpfusermodal').attr('src', data["img_2"]);
-  $('#emailusermodal').html(data["office"]);
-  $('#statususermodal').html(data["extn"]);
-
-
-
+  $('#nomeusermodal').html(data["nome"]);
+  $('#idusermodal').html(data["matricula"]);
+  $('#schoolusermodal').html(data["instituicao"]);
+  $('#imgidusermodal').attr('src', data["foto_comprovante_matricula"]);
+  $('#cpfusermodal').html(data["cpf"]);
+  $('#imgcpfusermodal').attr('src', data["foto_cpf"]);
+  $('#emailusermodal').html(data["email"]);
+  $('#statususermodal').html(data["situacao"]);
 
   // document.getElementById("nomeusermodal").innerHTML = data["id"];
   $('#myModal').modal('show');
+  // $('.modal-content').resizable({
+  //     //alsoResize: ".modal-dialog",
+  //     minHeight: 300,
+  //     minWidth: 300
+  // });
+  // $('.modal-dialog').draggable();
+  //
+  // $('#myModal').on('show.bs.modal', function () {
+  //     $(this).find('.modal-body').css({
+  //         'max-height':'100%'
+  //     });
+  // });
+
 }
+
+//https://bootsnipp.com/snippets/PaoDr
 
 // Preenchimento da tabela via API
 

@@ -7,4 +7,13 @@ body.modal-open-noscroll
 {
   margin-right: 0!important;
 }
+
+.modal-content.ui-resizable {
+
+}
+
+td.highlight {
+        font-weight: bold;
+        color: blue;
+    }
 share
