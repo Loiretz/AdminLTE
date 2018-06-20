@@ -1,7 +1,3 @@
-// Configuração da tabela
-// console.log(Cookies.get('admin-ieu-token'));
-// $(document).ready(function() {
-
 var usuarios = null;
 var user_selected = null;
 
@@ -17,16 +13,9 @@ function search_user(cpf){
   return null;
 }
 
-
 var table = $('#users_table').DataTable({
 
-  order: [[3, "desc"]],// ordenando pelo elemento 2 (data:salary)
-  //
-  // "createdRow": function ( row, data, index ) {
-  //   if ( data['situacao'].replace(/[\$,]/g, '') == 'Pendente ') {
-  //     //nao funciona $('td', row).eq(2).addClass('highlight');
-  //   }
-  // }
+  order: [[3, "desc"]],// ordenando pelo elemento 2
 });
 
 $.ajax({
@@ -37,7 +26,6 @@ $.ajax({
      "Authorization":"Bearer " + Cookies.get('admin-ieu-token')
    },
     success: function (result) {
-      // console.log(result)
       usuarios = result.data;
       // search_user('');
       $(result.data).each(function( index, value ) {
@@ -53,69 +41,57 @@ $.ajax({
     }
 });
 
-$('#btnDeclineSend').click(function(){
-  console.log(user_selected["_id"]);
-  console.log(user_selected);
-
-});
-
-
-$('#users_table tbody').on( 'click', 'tr', function () {
-  // var user = table.row( this );
-  //console.log();
-  user_selected = search_user(table.row( this ).data()[0]);
-  openUserModal(user_selected);
-
-  // $('#botaoConfirma').on('click',function(){
-  //   data = "kct de agulha";
-  //   console.log(data);
-  //
-  //   var ajax = new XMLLHttpRequest();
-  //   ajax.open("POST","json.txt",true);
-  //   ajax.setRe
-} );
-
-
-// $(document).ready(function() {
-//   var data = table.row( this ).data();
-//   console.log("eu existo");
-// });
-
-function openUserModal(data){
-  $('#nomeusermodal').html(data["name"]);
-  $('#idusermodal').html(data["student_id"]);
-  $('#schoolusermodal').html(data["university_id"]);
-  $('#imgidusermodal').attr('src', data["photo"]);
-  $('#cpfusermodal').html(data["cpf"]);
-  $('#imgcpfusermodal').attr('src', data["photo"]);
-  $('#emailusermodal').html(data["email"]);
-  $('#statususermodal').html(data["status"]);
-
-  $('#modalUserInfo').modal('show');
-
-  var flag_hide = false;
-
-  if (data['status'] == "CONFIRMED"){
-    flag_hide = true;
-  }
-
-  $('#botaoTexto').hide(flag_hide);
-  $('#botaoConfirma').hide(flag_hide);
-  // $('.modal-content').resizable({
-  //     //alsoResize: ".modal-dialog",
-  //     minHeight: 300,
-  //     minWidth: 300
-  // });
-  // $('.modal-dialog').draggable();
-  //
-  // $('#openUserModal').on('show.bs.modal', function () {
-  //     $(this).find('.modal-body').css({
-  //         'max-height':'100%'
-  //     });
-  // });
-
-}
-
 $("#btnDecline").click( function(){
   $("#modalTexto").modal('show');
 });
+
+//Click no botão Enviar
+$('#btnDeclineSend').click(function(){
+  // console.log(user_selected["_id"]); -- captura aqui o id do usuario
+  // console.log($("#textDeclineArea").val()); -- captura aqui o texto digitado
+});
+
+//Captura as informações da linha
+$('#users_table tbody').on( 'click', 'tr', function () {
+  user_selected = search_user(table.row( this ).data()[0]);
+  openUserModal(user_selected);
+} );
+
+//
+function openUserModal(data){
+  $.ajax({
+      //aqui da certo
+      url: 'https://api.ieu.caiorondon.com.br/as/student/details?user_id=' + data["_id"] ,
+      type: 'GET',
+      headers: {
+       "Authorization":"Bearer " + Cookies.get('admin-ieu-token')
+     },
+      success: function (result) {
+         console.log(result.data);
+         var data = result.data;
+
+         $('#nome-modal').html(data["name"]);
+         $('#id-modal').html(data["student_id"]);
+         $('#university-modal').html(data["university_id"]);
+         $('#cpf-modal').html(data["cpf"]);
+         $('#img-cpf-modal').attr('src', data["photo"]);
+         $('#img-id-modal').attr('src', data["doc_2"]);
+         $('#email-modal').html(data["email"]);
+         $('#status-modal').html(data["status"]);
+
+         var flag_hide = false;
+
+         if (data["status"] == "CONFIRMED"){
+           flag_hide = true;
+         }
+
+         $('#botaoTexto').hide(flag_hide);
+         $('#botaoConfirma').hide(flag_hide);
+         $('#modalUserInfo').modal('show');
+      },
+      error: function (jqXHR, tranStatus, errorThrown) {
+        alert('Status: ' + jqXHR.status + ' ' + jqXHR.statusText + '. ' +
+        'Response: ' + jqXHR.responseText);
+      }
+  });
+}

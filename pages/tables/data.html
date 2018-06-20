@@ -64,13 +64,13 @@
     <!-- User Account: style can be found in dropdown.less -->
     <li class="dropdown user user-menu">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-        <img src="../../dist/img/cachorro.png" class="user-image" alt="User Image">
+        <!-- <img src="../../dist/img/cachorro.png" class="user-image" alt="User Image"> -->
         <span class="hidden-xs">Usuário</span>
       </a>
       <ul class="dropdown-menu">
         <!-- User image -->
         <li class="user-header">
-          <img src="../../dist/img/cachorro.png" class="img-circle" alt="User Image">
+          <!-- <img src="../../dist/img/cachorro.png" class="img-circle" alt="User Image"> -->
 
           <p>
             Usuário
@@ -100,7 +100,7 @@
     <!-- Sidebar user panel -->
     <div class="user-panel">
       <div class="pull-left image">
-        <img src="../../dist/img/cachorro.png" class="img-circle" alt="User Image">
+        <!-- <img src="../../dist/img/cachorro.png" class="img-circle" alt="User Image"> -->
       </div>
       <div class="pull-left info">
         <p>Usuário</p>
@@ -190,19 +190,19 @@
               <div class="row">
                 <div class="col-md-6">
 
-                <b>Nome:</b> <p id="nomeusermodal"></p>
-                <b>Matrícula:</b> <p id="idusermodal"></p>
-                <b>Instituição de Ensino:</b><p id="schoolusermodal"></p>
-                <b>CPF:</b> <p id="cpfusermodal"></p>
-                <b>Email:</b> <p id="emailusermodal"></p>
-                <b>Situação de cadastro:</b><p id="statususermodal"></p>
+                <b>Nome:</b> <p id="nome-modal"></p>
+                <b>Matrícula:</b> <p id="id-modal"></p>
+                <b>Instituição de Ensino:</b><p id="university-modal"></p>
+                <b>CPF:</b> <p id="cpf-modal"></p>
+                <b>Email:</b> <p id="email-modal"></p>
+                <b>Situação de cadastro:</b><p id="status-modal"></p>
             </div>
             <div class="col-md-6">
                 <p><b>Foto CPF:</b></p>
-                <img id="imgcpfusermodal" style="width: 100%"/>
+                <img id="img-cpf-modal" style="width: 100%"/>
                 <p> </p>
                 <p><b>Foto Comprovante de Matrícula:</b></p>
-                <img id="imgidusermodal" style="width: 100%"/>
+                <img id="img-id-modal" style="width: 100%"/>
             </div>
           </div>
 
@@ -213,8 +213,8 @@
         </div>
 
         <div class="modal-footer">
+          <button type="button" class="btn btn-danger" id="btnDecline" data-dismiss="modal">Recusar cadastro</button>
           <button type="button" class="btn btn-success" id="btnApprove" data-dismiss="modal">Confirmar</button>
-          <button type="button" class="btn btn-danger" id="btnDecline">Recusar cadastro</button>
         </div>
       </div>
     </div>
@@ -236,7 +236,7 @@
             <form>
               Escreva aqui o motivo o qual o usuário não foi contemplado com um cadastro.
               <p></p>
-              <textarea id="textArea" name="textArea" rows="10" cols="80">
+              <textarea id="textDeclineArea" rows="10" cols="80">
                 This is my textarea to be replaced with CKEditor.
               </textarea>
             </form>
