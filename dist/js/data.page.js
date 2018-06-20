@@ -3,6 +3,7 @@
 // $(document).ready(function() {
 
 var usuarios = null;
+var user_selected = null;
 
 function search_user(cpf){
   var i = 0;
@@ -17,7 +18,7 @@ function search_user(cpf){
 }
 
 
-var table = $('#example1').DataTable({
+var table = $('#users_table').DataTable({
 
   order: [[3, "desc"]],// ordenando pelo elemento 2 (data:salary)
   //
@@ -36,12 +37,12 @@ $.ajax({
      "Authorization":"Bearer " + Cookies.get('admin-ieu-token')
    },
     success: function (result) {
-      console.log(result)
+      // console.log(result)
       usuarios = result.data;
-      search_user('');
+      // search_user('');
       $(result.data).each(function( index, value ) {
          table.row.add( [
-           value.cpf, value.name, value.university_id, value.status
+           value.cpf, value.name, value.university, value.status
          ] ).draw(true);
       });
 
@@ -52,12 +53,18 @@ $.ajax({
     }
 });
 
+$('#btnDeclineSend').click(function(){
+  console.log(user_selected["_id"]);
+  console.log(user_selected);
 
-$('#example1 tbody').on( 'click', 'tr', function () {
+});
+
+
+$('#users_table tbody').on( 'click', 'tr', function () {
   // var user = table.row( this );
   //console.log();
-  var user = search_user(table.row( this ).data()[0])
-  abrirModal(user);
+  user_selected = search_user(table.row( this ).data()[0]);
+  openUserModal(user_selected);
 
   // $('#botaoConfirma').on('click',function(){
   //   data = "kct de agulha";
@@ -69,12 +76,12 @@ $('#example1 tbody').on( 'click', 'tr', function () {
 } );
 
 
-$(document).ready(function() {
-  var data = table.row( this ).data();
-  console.log("eu existo");
-});
+// $(document).ready(function() {
+//   var data = table.row( this ).data();
+//   console.log("eu existo");
+// });
 
-function abrirModal(data){
+function openUserModal(data){
   $('#nomeusermodal').html(data["name"]);
   $('#idusermodal').html(data["student_id"]);
   $('#schoolusermodal').html(data["university_id"]);
@@ -84,7 +91,7 @@ function abrirModal(data){
   $('#emailusermodal').html(data["email"]);
   $('#statususermodal').html(data["status"]);
 
-  $('#myModal').modal('show');
+  $('#modalUserInfo').modal('show');
 
   var flag_hide = false;
 
@@ -101,7 +108,7 @@ function abrirModal(data){
   // });
   // $('.modal-dialog').draggable();
   //
-  // $('#myModal').on('show.bs.modal', function () {
+  // $('#openUserModal').on('show.bs.modal', function () {
   //     $(this).find('.modal-body').css({
   //         'max-height':'100%'
   //     });
@@ -109,6 +116,6 @@ function abrirModal(data){
 
 }
 
-$("#botaoTexto").click( function(){
+$("#btnDecline").click( function(){
   $("#modalTexto").modal('show');
 });
