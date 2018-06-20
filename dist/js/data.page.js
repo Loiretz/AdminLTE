@@ -19,26 +19,60 @@ var table = $('#users_table').DataTable({
 });
 
 $.ajax({
-    //aqui da certo
-    url: 'https://api.ieu.caiorondon.com.br/as/students',
-    type: 'GET',
-    headers: {
-     "Authorization":"Bearer " + Cookies.get('admin-ieu-token')
-   },
-    success: function (result) {
-      usuarios = result.data;
-      // search_user('');
-      $(result.data).each(function( index, value ) {
-         table.row.add( [
-           value.cpf, value.name, value.university, value.status
-         ] ).draw(true);
-      });
+  //aqui da certo
+  url: 'https://api.ieu.caiorondon.com.br/as/students',
+  type: 'GET',
+  headers: {
+    "Authorization":"Bearer " + Cookies.get('admin-ieu-token')
+  },
+  success: function (result) {
+    var status_html;
 
+    usuarios = result.data;
+    // search_user('');
+    $(result.data).each(function( index, value ) {
+      if(value.status === "CONFIRMED"){
+        status_html = "<span class='label label-success'>Confirmado</span>";
+      }
+      else{
+        status_html = "<span class='label label-danger'>Não confirmado</span>";
+      }
+      table.row.add( [
+        value.cpf, value.name, value.university, status_html
+      ] ).draw(true);
+    });
+
+  },
+  error: function (jqXHR, tranStatus, errorThrown) {
+    alert('Status: ' + jqXHR.status + ' ' + jqXHR.statusText + '. ' +
+    'Response: ' + jqXHR.responseText);
+  }
+});
+
+$("#btnApprove").click(function(){
+  // console.log(user_selected["_id"]);
+  var data = {
+    "user_id":user_selected["_id"]
+  };
+  $.ajax({
+    type: 'POST',
+    url: 'https://api.ieu.caiorondon.com.br/as/student/approve',
+    data: JSON.stringify(data),
+    dataType: 'JSON',
+    // beforeSend: function()
+    headers: {
+      "Authorization":"Bearer " + Cookies.get('admin-ieu-token')
     },
-    error: function (jqXHR, tranStatus, errorThrown) {
-      alert('Status: ' + jqXHR.status + ' ' + jqXHR.statusText + '. ' +
-      'Response: ' + jqXHR.responseText);
-    }
+    success: function(response){
+      console.log(response);
+      location.reload();
+    },//fim do success
+    error: function(xhr, data){
+      console.log(xhr.error);
+      // $('#modalErro').modal('show');
+
+    }//fim do error
+  });//fim do $.ajax
 });
 
 $("#btnDecline").click( function(){
@@ -49,49 +83,81 @@ $("#btnDecline").click( function(){
 $('#btnDeclineSend').click(function(){
   // console.log(user_selected["_id"]); -- captura aqui o id do usuario
   // console.log($("#textDeclineArea").val()); -- captura aqui o texto digitado
+  var data = {
+    "user_id":user_selected["_id"],
+    "reason":$("#textDeclineArea").val()
+  };
+  $.ajax({
+    type: 'POST',
+    url: 'https://api.ieu.caiorondon.com.br/as/student/decline',
+    data: JSON.stringify(data),
+    dataType: 'JSON',
+    // beforeSend: function()
+    headers: {
+      "Authorization":"Bearer " + Cookies.get('admin-ieu-token')
+    },
+    success: function(response){
+      console.log(response);
+      location.reload();
+    },//fim do success
+    error: function(xhr, data){
+      console.log(xhr.error);
+      // $('#modalErro').modal('show');
+
+    }//fim do error
+  });//fim do $.ajax
 });
 
 //Captura as informações da linha
 $('#users_table tbody').on( 'click', 'tr', function () {
   user_selected = search_user(table.row( this ).data()[0]);
   openUserModal(user_selected);
+  $.LoadingOverlay("show");
+
+
 } );
+
+$('#users_table tbody').hover(function() {
+        $(this).css('cursor','pointer');
+    });
 
 //
 function openUserModal(data){
   $.ajax({
-      //aqui da certo
-      url: 'https://api.ieu.caiorondon.com.br/as/student/details?user_id=' + data["_id"] ,
-      type: 'GET',
-      headers: {
-       "Authorization":"Bearer " + Cookies.get('admin-ieu-token')
-     },
-      success: function (result) {
-         console.log(result.data);
-         var data = result.data;
+    //aqui da certo
+    url: 'https://api.ieu.caiorondon.com.br/as/student/details?user_id=' + data["_id"] ,
+    type: 'GET',
+    headers: {
+      "Authorization":"Bearer " + Cookies.get('admin-ieu-token')
+    },
+    success: function (result) {
+      // console.log(result.data);
+      var data = result.data;
 
-         $('#nome-modal').html(data["name"]);
-         $('#id-modal').html(data["student_id"]);
-         $('#university-modal').html(data["university_id"]);
-         $('#cpf-modal').html(data["cpf"]);
-         $('#img-cpf-modal').attr('src', data["photo"]);
-         $('#img-id-modal').attr('src', data["doc_2"]);
-         $('#email-modal').html(data["email"]);
-         $('#status-modal').html(data["status"]);
+      $('#nome-modal').html(data["name"]);
+      $('#id-modal').html(data["student_id"]);
+      $('#university-modal').html(data["university_id"]);
+      $('#cpf-modal').html(data["cpf"]);
+      $('#img-cpf-modal').attr('src', data["doc_1"]);
+      $('#img-id-modal').attr('src', data["doc_2"]);
+      $('#email-modal').html(data["email"]);
+      $('#status-modal').html(data["status"]);
 
-         var flag_hide = false;
-
-         if (data["status"] == "CONFIRMED"){
-           flag_hide = true;
-         }
-
-         $('#botaoTexto').hide(flag_hide);
-         $('#botaoConfirma').hide(flag_hide);
-         $('#modalUserInfo').modal('show');
-      },
-      error: function (jqXHR, tranStatus, errorThrown) {
-        alert('Status: ' + jqXHR.status + ' ' + jqXHR.statusText + '. ' +
-        'Response: ' + jqXHR.responseText);
+      if (data["status"] === "CONFIRMED"){
+        $('#btnDecline').hide();
+        $('#btnApprove').hide();
       }
+      else{
+        $('#btnDecline').show();
+        $('#btnApprove').show();
+      }
+
+      $.LoadingOverlay("hide");
+      $('#modalUserInfo').modal('show');
+    },
+    error: function (jqXHR, tranStatus, errorThrown) {
+      alert('Status: ' + jqXHR.status + ' ' + jqXHR.statusText + '. ' +
+      'Response: ' + jqXHR.responseText);
+    }
   });
 }
