@@ -1,9 +1,20 @@
+$('input').keypress(function(e) {
+    if(e.which == 13) {
+        $('#botaoLogin').trigger('click');
+    }
+});
+
+$('#botaoLogin').on('click', function() {
+
+});
 //funcoes js que atendem ao POST de login em login.html5shiv
 $("#botaoLogin").click( function(){
   //verificar com o caio se essa estrutrura aqui ta correta.
+
   var vemail = $("#email").val();
   var vpassword = $("#password").val();
   var data = {email:vemail , password:vpassword}
+
 
   $.LoadingOverlay("show");
 
