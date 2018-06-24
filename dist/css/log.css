@@ -6,8 +6,42 @@
   animation: AnimationName 21s ease infinite;
 
   @keyframes AnimationName {
-      0%{background-position:0% 88%}
-      50%{background-position:100% 13%}
-      100%{background-position:0% 88%}
+    0%{background-position:0% 88%}
+    50%{background-position:100% 13%}
+    100%{background-position:0% 88%}
 
   }
+}
+
+.modal-open{
+  padding:0 !important;
+  overflow-y: auto;
+ }
+.modal{
+  text-align: center;
+}
+
+.vertical-alignment-helper {
+  height: 80%
+  display: table;
+}
+
+.modal-dialog {
+  height: 150px auto;
+  margin: 30px auto;
+}
+
+.vertical-align-center {
+  vertial-align: middle;
+}
+
+.rotate {
+  transform: rotate(270deg);
+}
+
+.modal-content{
+  vertical-align: center;
+  width: inherit;
+  height: inherit;
+  margin: 0 auto;
+}

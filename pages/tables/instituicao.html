@@ -62,35 +62,12 @@
           <ul class="nav navbar-nav">
 
 
-
-    <!-- User Account: style can be found in dropdown.less -->
-    <li class="dropdown user user-menu">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-        <!-- <img src="../../dist/img/cachorro.png" class="user-image" alt="User Image"> -->
-        <span class="hidden-xs">Usuário</span>
-      </a>
-      <ul class="dropdown-menu">
-        <!-- User image -->
-        <li class="user-header">
-          <!-- <img src="../../dist/img/cachorro.png" class="img-circle" alt="User Image"> -->
-
-          <p>
-            Usuário
-            <small>Ralando desde Março</small>
-          </p>
-        </li>
-        <!-- Menu Footer-->
-        <li class="user-body">
-          <div class="pull-right">
-            <a href="../login.html" class="btn btn-default btn-flat">Desconectar</a>
-          </div>
-        </li>
-      </ul>
-    </li>
-    <!-- Control Sidebar Toggle Button -->
-    <!-- <li>
-    <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-  </li> -->
+      <li class="dropdown user user-menu">
+        <a class="dropdown-toggle" data-toggle="dropdown">
+          <!-- <img src="../../dist/img/cachorro.png" class="user-image" alt="User Image"> -->
+          <span class="hidden-xs" id="btnDesconectar">Desconectar</span>
+        </a>
+      </li>
 </ul>
 </div>
 </nav>
@@ -179,7 +156,7 @@
   </section>
 
   <!--Base do Modal utilizado -->
-  <div class="modal fade" id="modalUniversityInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal fade" id="modalInstituicao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -188,21 +165,11 @@
         </div>
         <div class="modal-body">
           <form>
-              <div class="row">
-                <div class="col-md-6">
-
                 <b>Instituição de Ensino:</b><p id="university-modal"></p>
-
-            </div>
-            <div class="col-md-6">
                 <p><b>Foto Documento:</b></p>
                 <img id="img-university-modal" style="width: 100%"/>
-            </div>
-          </div>
-
           </form>
         </div>
-
         <div class="modal-footer">
            <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
         </div>
@@ -210,21 +177,10 @@
     </div>
   </div>
   <!--FIM: Base do Modal Utilizado  -->
-
 </div>
-<!-- /.row -->
-<!-- /.content -->
-
 <!--FIM: Base do Modal Utilizado  -->
 
 <!-- /.content-wrapper -->
-<footer class="main-footer">
-  <div class="pull-right hidden-xs">
-    <b>Version</b> 2.4.0
-  </div>
-  <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
-  reserved.
-</footer>
 </div>
 <!-- ./wrapper -->
 
@@ -252,7 +208,8 @@
 <!-- LOADING -->
 <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.4/dist/loadingoverlay.min.js"></script>
 <!-- page script -->
-<script src="../../dist/js/data.page.js"></script>
+<script src="../../dist/js/university.page.js"></script>
+
 
 </body>
 

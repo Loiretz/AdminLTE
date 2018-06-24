@@ -14,7 +14,11 @@ function search_user(cpf){
 }
 
 var table = $('#users_table').DataTable({
-
+  "columnDefs": [
+    { "width": "10%", "targets": 0 },
+    { "width": "30%", "targets": 2 },
+    { "width": "20%", "targets": 3 }
+  ],
   order: [[3, "desc"]],// ordenando pelo elemento 2
 });
 
@@ -29,7 +33,6 @@ $.ajax({
     var status_html;
 
     usuarios = result.data;
-    // search_user('');
     $(result.data).each(function( index, value ) {
       if(value.status === "CONFIRMED"){
         status_html = "<span class='label label-success'>Confirmado</span>";
@@ -64,7 +67,7 @@ $("#btnApprove").click(function(){
       "Authorization":"Bearer " + Cookies.get('admin-ieu-token')
     },
     success: function(response){
-      console.log(response);
+      //console.log(response);
       location.reload();
     },//fim do success
     error: function(xhr, data){
@@ -97,7 +100,7 @@ $('#btnDeclineSend').click(function(){
       "Authorization":"Bearer " + Cookies.get('admin-ieu-token')
     },
     success: function(response){
-      console.log(response);
+      //console.log(response);
       location.reload();
     },//fim do success
     error: function(xhr, data){
@@ -113,13 +116,20 @@ $('#users_table tbody').on( 'click', 'tr', function () {
   user_selected = search_user(table.row( this ).data()[0]);
   openUserModal(user_selected);
   $.LoadingOverlay("show");
-
-
 } );
 
 $('#users_table tbody').hover(function() {
         $(this).css('cursor','pointer');
     });
+
+$('#btnDesconectar').hover(function() {
+        $(this).css('cursor','pointer');
+    });
+
+$('#btnDesconectar').click(function(){
+  Cookies.remove;
+  window.location.replace('../login.html');
+});
 
 //
 function openUserModal(data){

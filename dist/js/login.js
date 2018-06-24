@@ -1,4 +1,4 @@
-$('input').keypress(function(e) {
+$('#email').keypress(function(e) {
     if(e.which == 13) {
         $('#botaoLogin').trigger('click');
     }

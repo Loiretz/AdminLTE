@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
   <!-- iCheck -->
   <link rel="stylesheet" href="../plugins/iCheck/square/blue.css">
-    <link rel="stylesheet" type="text/css"  href="../dist/css/log.css" />
+  <link rel="stylesheet" type="text/css"  href="../dist/css/log.css" />
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -41,7 +41,7 @@
 
     <form>
       <div class="form-group has-feedback">
-        <input type="email" class="form-control" placeholder="Email">
+        <input type="email" id="email" class="form-control" placeholder="Email">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="row">
@@ -51,7 +51,7 @@
         </div>
         <!-- /.col -->
         <div class="col-xs-4">
-          <button type="submit" class="btn btn-primary btn-block btn-flat">Enviar</button><a href="#">
+          <button id="btnEnviar" type="button" class="btn btn-primary btn-block btn-flat">Enviar</button>
         </div>
         <!-- /.col -->
       </div>
@@ -64,20 +64,34 @@
 </div>
 <!-- /.login-box -->
 
+<!--modelo modal  -->
+<div class="modal fade" id="modalErro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="vertical-alignment-helper">
+    <div class="modal-dialog modal-sm vertical-align-center">
+      <div class="modal-content">
+        <div class="modal-header">
+          Erro!
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class= "modal-body">
+          <center>Ocorreu um erro na sua solicitação. Tente novamente mais tarde</center>
+          <div class= "rotate"><font size="12"><center>):</center></font></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /.modelo modal -->
+
 <!-- jQuery 3 -->
 <script src="../bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- iCheck -->
 <script src="../plugins/iCheck/icheck.min.js"></script>
-<script>
-  $(function () {
-    $('input').iCheck({
-      checkboxClass: 'icheckbox_square-blue',
-      radioClass: 'iradio_square-blue',
-      increaseArea: '20%' /* optional */
-    });
-  });
-</script>
+<script src="../dist/js/forget.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.4/dist/loadingoverlay.min.js"></script>
+
+
 </body>
 </html>
