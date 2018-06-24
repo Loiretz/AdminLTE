@@ -9,10 +9,21 @@ function search_user(cpf){
       return usuarios[i];
     }
   };
-
   return null;
 }
 
+//Funções relacionadas ao botão Desconectar superior
+$('#btnDesconectar').hover(function() {
+  $(this).css('cursor','pointer');
+});
+
+$('#btnDesconectar').click(function(){
+  Cookies.remove;
+  window.location.replace('../login.html');
+});
+// --FIM btnDesconectar--
+
+//Funções da Tabela
 var table = $('#users_table').DataTable({
   "columnDefs": [
     { "width": "10%", "targets": 0 },
@@ -51,7 +62,7 @@ $.ajax({
     'Response: ' + jqXHR.responseText);
   }
 });
-
+//Botão Confirma
 $("#btnApprove").click(function(){
   // console.log(user_selected["_id"]);
   var data = {
@@ -67,7 +78,7 @@ $("#btnApprove").click(function(){
       "Authorization":"Bearer " + Cookies.get('admin-ieu-token')
     },
     success: function(response){
-      //console.log(response);
+      // console.log(response);
       location.reload();
     },//fim do success
     error: function(xhr, data){
@@ -77,6 +88,8 @@ $("#btnApprove").click(function(){
     }//fim do error
   });//fim do $.ajax
 });
+
+//Botão Recusar
 
 $("#btnDecline").click( function(){
   $("#modalTexto").modal('show');
@@ -114,22 +127,15 @@ $('#btnDeclineSend').click(function(){
 //Captura as informações da linha
 $('#users_table tbody').on( 'click', 'tr', function () {
   user_selected = search_user(table.row( this ).data()[0]);
+  console.log(user_selected);
   openUserModal(user_selected);
   $.LoadingOverlay("show");
 } );
 
 $('#users_table tbody').hover(function() {
-        $(this).css('cursor','pointer');
-    });
-
-$('#btnDesconectar').hover(function() {
-        $(this).css('cursor','pointer');
-    });
-
-$('#btnDesconectar').click(function(){
-  Cookies.remove;
-  window.location.replace('../login.html');
+  $(this).css('cursor','pointer');
 });
+
 
 //
 function openUserModal(data){
@@ -141,7 +147,7 @@ function openUserModal(data){
       "Authorization":"Bearer " + Cookies.get('admin-ieu-token')
     },
     success: function (result) {
-      // console.log(result.data);
+      console.log(result.data);
       var data = result.data;
 
       $('#nome-modal').html(data["name"]);

@@ -2,7 +2,6 @@
 {
   background: linear-gradient(121deg, #0ba17a, #03ac81);
   background-size: 400% 400%;
-
   animation: AnimationName 21s ease infinite;
 
   @keyframes AnimationName {
