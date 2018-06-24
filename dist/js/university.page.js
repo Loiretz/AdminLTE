@@ -13,10 +13,18 @@ function search_university(instituicao){
   return null;
 }
 
-var table = $('#university_table').UniversityTable({
+//Funções relacionadas ao botão Desconectar superior
+$('#btnDesconectar').hover(function() {
+        $(this).css('cursor','pointer');
+    });
 
-  order: [[3, "desc"]],// ordenando pelo elemento 2 (como fazer?)
+$('#btnDesconectar').click(function(){
+  Cookies.remove;
+  window.location.replace('../login.html');
 });
+// --FIM btnDesconectar--
+
+//Funções a Tabela
 
 $.ajax({
   //aqui da certo
@@ -26,10 +34,13 @@ $.ajax({
     "Authorization":"Bearer " + Cookies.get('admin-ieu-token')
   },
   success: function (result) {
-    var status_html;
+    usuarios = result.data;
+    $(result.data).each(function( index, value ) {
+      table.row.add( [
+        value.university, value.name
+      ] ).draw(true);
+    });
 
-    instituicao = result.data;
-    // search_user('');
   },
   error: function (jqXHR, tranStatus, errorThrown) {
     alert('Status: ' + jqXHR.status + ' ' + jqXHR.statusText + '. ' +
@@ -37,35 +48,42 @@ $.ajax({
   }
 });
 
-$('#university_table tbody').on( 'click', 'tr', function () {
-  university_selected = search_university(table.row( this ).data()[0]);
-  openUniversityModal(instit_selected);
-  $.LoadingOverlay("show");
+var table = $('#university_table').DataTable({
+  oder:[[1, "desc"]]
+});
 
-
-} );
-
-$('#university_table tbody').hover(function() {
-        $(this).css('cursor','pointer');
-    });
-
-function openUniversityModal(data){
+function openUserModal(data){
   $.ajax({
-    url: 'https://api.ieu.caiorondon.com.br/as/student/details?user_id=' + data["_instituicao"] , // ver como vai ficar no documento
+    //aqui da certo
+    url: 'https://api.ieu.caiorondon.com.br/as/student/details?user_id=' + data["_id"] ,
     type: 'GET',
     headers: {
       "Authorization":"Bearer " + Cookies.get('admin-ieu-token')
     },
     success: function (result) {
+      // console.log(result.data);
       var data = result.data;
 
-      $('#university-modal').html(data["university_id"]); // (ver como vai ficar)
-      $('#img-university-modal').attr('src', data["doc_2"]); // (ver como vai ficar)
+      $('#nome-modal').html(data["name"]);
+      $('#id-modal').html(data["student_id"]);
+      $('#university-modal').html(data["university_id"]);
+      $('#cpf-modal').html(data["cpf"]);
+      $('#img-cpf-modal').attr('src', data["doc_1"]);
+      $('#img-id-modal').attr('src', data["doc_2"]);
+      $('#email-modal').html(data["email"]);
+      $('#status-modal').html(data["status"]);
 
+      if (data["status"] === "CONFIRMED"){
+        $('#btnDecline').hide();
+        $('#btnApprove').hide();
+      }
+      else{
+        $('#btnDecline').show();
+        $('#btnApprove').show();
       }
 
       $.LoadingOverlay("hide");
-      $('#modalUniversityInfo').modal('show');
+      $('#modalUserInfo').modal('show');
     },
     error: function (jqXHR, tranStatus, errorThrown) {
       alert('Status: ' + jqXHR.status + ' ' + jqXHR.statusText + '. ' +
@@ -73,3 +91,31 @@ function openUniversityModal(data){
     }
   });
 }
+
+
+$('#university_table tbody').hover(function() {
+        $(this).css('cursor','pointer');
+    });
+
+$('#university_table tbody').on( 'click', 'tr', function () {
+  instituicao_selected = search_university(table.row( this ).data()[0]);
+  openUserModal(instituicao_selected);
+  $.LoadingOverlay("show");
+} );
+
+
+
+//-- FIM Tabela --
+
+//Funções do Modal
+$("#botaoModalInst").click( function()
+{
+  $('#modalInstituicao').modal('show');
+});
+
+// --FIM modal --
+
+// $(".pop").on("click", function() {
+//    $('#imagepreview').attr('src', $(this).attr('src'));
+//    $('#imagemodal').modal('show');
+// });
