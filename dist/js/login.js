@@ -3,10 +3,6 @@ $('input').keypress(function(e) {
         $('#botaoLogin').trigger('click');
     }
 });
-
-$('#botaoLogin').on('click', function() {
-
-});
 //funcoes js que atendem ao POST de login em login.html5shiv
 $("#botaoLogin").click( function(){
   //verificar com o caio se essa estrutrura aqui ta correta.
