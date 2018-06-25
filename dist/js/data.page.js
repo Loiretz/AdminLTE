@@ -6,6 +6,7 @@ function search_user(cpf){
 
   for(i = 0; i < usuarios.length; i++){
     if (usuarios[i].cpf == cpf){
+      // console.log(usuarios[i].cpf);
       return usuarios[i];
     }
   };
@@ -18,7 +19,7 @@ $('#btnDesconectar').hover(function() {
 });
 
 $('#btnDesconectar').click(function(){
-  Cookies.remove;
+  Cookies.remove();
   window.location.replace('../login.html');
 });
 // --FIM btnDesconectar--
@@ -44,6 +45,7 @@ $.ajax({
     var status_html;
 
     usuarios = result.data;
+    // console.log(result.data);
     $(result.data).each(function( index, value ) {
       if(value.status === "CONFIRMED"){
         status_html = "<span class='label label-success'>Confirmado</span>";
@@ -147,7 +149,7 @@ function openUserModal(data){
       "Authorization":"Bearer " + Cookies.get('admin-ieu-token')
     },
     success: function (result) {
-      console.log(result.data);
+      // console.log(result.data);
       var data = result.data;
 
       $('#nome-modal').html(data["name"]);

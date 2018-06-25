@@ -1,11 +1,11 @@
 var instituicoes = null;
 var row_selected = null;
 
-function search_user(cpf){
+function search_user(id){
   var i = 0;
 
   for(i = 0; i < instituicoes.length; i++){
-    if (instituicoes[i].cpf == cpf){
+    if (instituicoes[i]._id == id){
       return instituicoes[i];
     }
   };
@@ -18,19 +18,24 @@ $('#btnDesconectar').hover(function() {
 });
 
 $('#btnDesconectar').click(function(){
-  Cookies.remove;
+  Cookies.remove();
   window.location.replace('../login.html');
 });
 // --FIM btnDesconectar--
 
 //Funções da Tabela
 var table = $('#university_table').DataTable({
-  order: [[0, "desc"]],// ordenando pelo elemento 2
+  "columnDefs": [
+    { "width": "10%", "targets": 0 },
+    { "width": "90%", "targets": 1 }
+  ],
+
+  order: [[0, "desc"]],// ordenando pelo elemento 1
 });
 
 $.ajax({
   //aqui da certo
-  url: 'https://api.ieu.caiorondon.com.br/as/students',
+  url: 'https://api.ieu.caiorondon.com.br/as/universities ',
   type: 'GET',
   headers: {
     "Authorization":"Bearer " + Cookies.get('admin-ieu-token')
@@ -39,12 +44,10 @@ $.ajax({
     var status_html;
 
     instituicoes = result.data;
+    // console.log(result.data);
     $(result.data).each(function( index, value ) {
-      // if(value.doc_1 !== null){
-      //   status_html = "<span class='label label-success'>Confirmado</span>";
-      // }
       table.row.add( [
-        value.cpf, value.name//status_html//value.name
+        value.university_short_name, value.university_name
       ] ).draw(true);
     });
 
@@ -72,7 +75,7 @@ $('#university_table tbody').hover(function() {
 function openUserModal(data){
   $.ajax({
     //aqui da certo
-    url: 'https://api.ieu.caiorondon.com.br/as/student/details?user_id=' + data["_id"] ,
+    url: 'https://api.ieu.caiorondon.com.br/as//as/university/details?university_id=' + data["_id"] ,
     type: 'GET',
     headers: {
       "Authorization":"Bearer " + Cookies.get('admin-ieu-token')
@@ -81,9 +84,9 @@ function openUserModal(data){
       //console.log(result.data);
       var data = result.data;
 
-      $('#university-name-modal').html(data["cpf"]);
-      $('#doc-modal').html(data["name"]);
-      $('#img-doc-modal').attr('src', data["doc_1"]);
+      $('#university-name-modal').html(data["university_name"]);
+      $('#doc-modal').html(data["university_short_name"]);
+      $('#img-doc-modal').attr('src', data["doc"]);
 
 
       $.LoadingOverlay("hide");
