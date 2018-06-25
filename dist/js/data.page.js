@@ -176,6 +176,7 @@ function openUserModal(data){
     error: function (jqXHR, tranStatus, errorThrown) {
       alert('Status: ' + jqXHR.status + ' ' + jqXHR.statusText + '. ' +
       'Response: ' + jqXHR.responseText);
+      $.LoadingOverlay("hide");
     }
   });
 }

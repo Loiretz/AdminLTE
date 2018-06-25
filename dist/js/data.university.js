@@ -5,7 +5,7 @@ function search_user(id){
   var i = 0;
 
   for(i = 0; i < instituicoes.length; i++){
-    if (instituicoes[i]._id == id){
+    if (instituicoes[i].university_short_name == id){
       return instituicoes[i];
     }
   };
@@ -44,7 +44,6 @@ $.ajax({
     var status_html;
 
     instituicoes = result.data;
-    // console.log(result.data);
     $(result.data).each(function( index, value ) {
       table.row.add( [
         value.university_short_name, value.university_name
@@ -61,7 +60,7 @@ $.ajax({
 //Captura as informações da linha
 $('#university_table tbody').on( 'click', 'tr', function () {
   row_selected = search_user(table.row( this ).data()[0]);
-  //console.log(row_selected);
+  // console.log(row_selected);
   openUserModal(row_selected);
   $.LoadingOverlay("show");
 } );
@@ -75,18 +74,18 @@ $('#university_table tbody').hover(function() {
 function openUserModal(data){
   $.ajax({
     //aqui da certo
-    url: 'https://api.ieu.caiorondon.com.br/as//as/university/details?university_id=' + data["_id"] ,
+    url: 'https://api.ieu.caiorondon.com.br/as/university/details?university_id=' + data["_id"] ,
     type: 'GET',
     headers: {
       "Authorization":"Bearer " + Cookies.get('admin-ieu-token')
     },
     success: function (result) {
-      //console.log(result.data);
-      var data = result.data;
-
-      $('#university-name-modal').html(data["university_name"]);
-      $('#doc-modal').html(data["university_short_name"]);
-      $('#img-doc-modal').attr('src', data["doc"]);
+      console.log(result.data);
+      var data2 = result.data;
+      // 
+      // $('#university-name-modal').html(data["university_name"]);
+      // $('#doc-modal').html(data["university_short_name"]);
+      $('#img-doc-modal').attr('src', data2["doc"]);
 
 
       $.LoadingOverlay("hide");
@@ -95,6 +94,7 @@ function openUserModal(data){
     error: function (jqXHR, tranStatus, errorThrown) {
       alert('Status: ' + jqXHR.status + ' ' + jqXHR.statusText + '. ' +
       'Response: ' + jqXHR.responseText);
+      $.LoadingOverlay("hide");
     }
   });
 }
